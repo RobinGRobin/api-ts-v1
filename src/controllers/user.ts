@@ -9,6 +9,7 @@ import { handleHttp } from "../utils/error.handle";
 
 const getUsers = async (req: Request, res: Response) => {
     try {
+        console.log("Already in getUsers controller");
         const response = await getUsersService();
         res.send(response);
     } catch (error) {
