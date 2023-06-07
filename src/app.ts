@@ -9,13 +9,9 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
-app.use(
-    morgan(
-        ":remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms"
-    )
-);
+app.use(morgan("combined"));
 app.use(router);
 
 db().then(() => console.log("Mongo connection succesfully"));

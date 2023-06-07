@@ -6,16 +6,16 @@ import {
     getUsers,
 } from "../controllers/user";
 import multerMiddleware from "../middlewares/file";
+import { checkJwt } from "../middlewares/session";
 
 const router = Router();
 
-router.get("/", getUsers);
+router.get("/", checkJwt, getUsers);
 router.get("/test", (req: Request, res: Response) => {
     console.log("in test route");
-    res.send("EN RUTA DE PRUEBA");
-    res.send(res.header);
+    res.send({ message: "EN RUTA DE PRUEBA" });
 });
-router.get("/:id", getUser);
+router.get("/:id", checkJwt, getUser);
 router.put(
     "/:id",
     multerMiddleware.single("profilePicture"),

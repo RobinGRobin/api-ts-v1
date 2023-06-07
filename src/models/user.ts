@@ -17,7 +17,7 @@ const UserSchema = new Schema<User>(
             unique: true,
         },
         age: {
-            type: Number,
+            type: String,
             required: true,
         },
         imagePath: {
