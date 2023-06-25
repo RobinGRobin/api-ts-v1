@@ -1,0 +1,29 @@
+import { Schema, model } from "mongoose";
+import { classInfo } from "../interfaces/class.interface";
+
+const classInfoSchema = new Schema<classInfo>(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        group: {
+            type: String,
+            required: true,
+        },
+        professorId: {
+            type: String,
+            required: true,
+        },
+        students: {
+            type: [],
+            default: null,
+        },
+    },
+    {
+        versionKey: false,
+        timestamps: true,
+    }
+);
+
+const classInfoModel = model("classes", classInfoSchema);
