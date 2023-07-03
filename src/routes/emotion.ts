@@ -4,6 +4,6 @@ import { getEmotions } from "../controllers/emotion";
 
 const router = Router();
 
-router.post("/", multerMiddleware.single("facePicture"), getEmotions); // Petición a API de AWS
+router.post("/:id", multerMiddleware.single("facePicture"), getEmotions); // Petición a API de AWS
 
 export { router };

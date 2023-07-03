@@ -1,30 +1,9 @@
-import AWS from "aws-sdk";
-import fs from "fs";
+import { Emotion } from "../interfaces/emotion.interface";
+import EmotionModel from "../models/emotion";
 
-AWS.config.update({ region: "us-east-2" });
-
-const client = new AWS.Rekognition();
-
-const getEmotionsService = async (path: string) => {
-    const params = {
-        Image: {
-            Bytes: fs.readFileSync(path),
-        },
-        Attributes: ["ALL"],
-    };
-    let clientResponse = "";
-    client.detectFaces(params, function (err, response) {
-        if (err) {
-            console.log("Error: ", err);
-        } else {
-            if (response.FaceDetails) {
-                if (response.FaceDetails[0].Emotions) {
-                    clientResponse = `${response.FaceDetails[0].Emotions[0].Type}`;
-                }
-            }
-        }
-    });
-    return clientResponse;
+const createNewEmotionService = async ({ name, user, classId }: Emotion) => {
+    const newEmotion = await EmotionModel.create({ name, user, classId });
+    return newEmotion;
 };
 
-export { getEmotionsService };
+export { createNewEmotionService };

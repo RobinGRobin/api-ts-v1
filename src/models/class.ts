@@ -15,6 +15,10 @@ const classInfoSchema = new Schema<classInfo>(
             type: String,
             required: true,
         },
+        accessCode: {
+            type: String,
+            default: null,
+        },
         students: {
             type: [],
             default: null,
@@ -27,3 +31,5 @@ const classInfoSchema = new Schema<classInfo>(
 );
 
 const classInfoModel = model("classes", classInfoSchema);
+
+export default classInfoModel;
