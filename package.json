@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/app.ts",
-    "start": "ts-node --esm ./src/app.ts"
+    "start": "tsc ./src/app.ts"
   },
   "keywords": [],
   "author": "",
