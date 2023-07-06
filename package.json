@@ -10,8 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/app.ts",
-    "build": "tsc",
-    "start": "npm run build && node ./dist/app.js"
+    "postinstall": "tsc",
+    "start": "node ./dist/app.js"
   },
   "keywords": [],
   "author": "",
