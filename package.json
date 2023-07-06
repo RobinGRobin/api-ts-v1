@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/app.ts",
-    "start": "tsc ./src/app.ts"
+    "start": "nodemon ./src/app.ts",
+    "postinstall": "tsc"
   },
   "keywords": [],
   "author": "",
