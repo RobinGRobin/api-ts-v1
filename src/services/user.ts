@@ -1,5 +1,4 @@
 import UserModel from "../models/user";
-import { User } from "../interfaces/user.interface";
 
 const getUsersService = async () => {
     const responseUsers = await UserModel.find({});
@@ -31,9 +30,18 @@ const addProfilePictureService = async (imageRoute: string, id: string) => {
     return responseUser;
 };
 
+const addClassToUserService = async (idClass: string, idUser: string) => {
+    const responseUser = await UserModel.updateOne(
+        { _id: idUser },
+        { $push: { classes: idClass } }
+    );
+    return responseUser;
+};
+
 export {
     getUsersService,
     getUserService,
     deleteUserService,
     addProfilePictureService,
+    addClassToUserService,
 };

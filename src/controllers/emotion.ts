@@ -21,8 +21,8 @@ const getEmotions = async (req: Request, res: Response) => {
 
             const data = await createNewEmotionService({
                 name: "Prueba",
-                user: req.params.id,
-                classId: "",
+                user: req.params.idStudent,
+                classId: req.params.idClass,
             });
             res.send(data);
 

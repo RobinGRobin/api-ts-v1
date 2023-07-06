@@ -11,7 +11,7 @@ const app = express();
 
 app.use(cors({ origin: "*" }));
 app.use(express.json({ limit: "50mb" }));
-app.use(morgan("combined"));
+app.use(morgan("tiny"));
 app.use(router);
 
 db().then(() => console.log("Mongo connection succesfully"));
