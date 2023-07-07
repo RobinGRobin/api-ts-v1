@@ -13,12 +13,10 @@ import { addClassToUserService } from "../services/user";
 const registerNewClassController = async ({ body }: Request, res: Response) => {
     const responseClassInfo = await createNewClassService(body);
     // Agregar la clase creada al documento del usuario profesor
-    console.log("Clase creada: ", responseClassInfo);
     const responseUser = await addClassToUserService(
         responseClassInfo,
         body.professorId
     );
-    console.log("Professor Document modified: ", responseUser);
     res.send(responseClassInfo);
 };
 
@@ -27,18 +25,8 @@ const updateClassController = async (req: Request, res: Response) => {
     const accessCode = req.params.id;
     const studentId = req.body.idStudent;
     const classId = await getClassIdService(accessCode); // Obtiene el id de la clase a la que se va a registrar
-    console.log(
-        "Se va a registrar al estudiante: ",
-        studentId,
-        " en la clase: ",
-        classId,
-        " con código de acceso: ",
-        accessCode
-    );
     const responseClassInfo = await updateClassService(accessCode, studentId); // Actualiza el arreglo de usuarios en el documento de clases
-    console.log("Document class modification: ", responseClassInfo);
     const responseStudent = await addClassToUserService(classId, studentId); // Actualiza el arreglo de clases en el documento del estudiante
-    console.log("Document student modification: ", responseStudent);
     res.send({ responseClassInfo, responseStudent });
 };
 

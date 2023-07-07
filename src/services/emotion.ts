@@ -6,4 +6,9 @@ const createNewEmotionService = async ({ name, user, classId }: Emotion) => {
     return newEmotion;
 };
 
-export { createNewEmotionService };
+const getClassEmotionsService = async (idClass: string) => {
+    const Emotions = await EmotionModel.find({ classId: idClass });
+    return Emotions;
+};
+
+export { createNewEmotionService, getClassEmotionsService };
