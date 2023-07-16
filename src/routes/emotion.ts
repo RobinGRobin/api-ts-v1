@@ -4,14 +4,16 @@ import {
     getClassEmotionsController,
     getEmotions,
 } from "../controllers/emotion";
+import { checkJwt } from "../middlewares/session";
 
 const router = Router();
 
 router.post(
     "/:idStudent/:idClass",
     multerMiddleware.single("facePicture"),
+    checkJwt,
     getEmotions
 ); // Petición a API de AWS
-router.get("/:idClass", getClassEmotionsController);
+router.get("/:idClass", checkJwt, getClassEmotionsController);
 
 export { router };

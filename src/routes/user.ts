@@ -17,6 +17,6 @@ router.put(
     multerMiddleware.single("profilePicture"),
     addProfilePicture
 );
-router.delete("/:id", deleteUser);
+router.delete("/:id", checkJwt, deleteUser);
 
 export { router };
