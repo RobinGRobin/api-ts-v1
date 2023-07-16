@@ -10,13 +10,13 @@ import { checkJwt } from "../middlewares/session";
 
 const router = Router();
 
-router.get("/", checkJwt, getUsers);
-router.get("/:id", checkJwt, getUser);
+router.get("/", getUsers);
+router.get("/:id", getUser);
 router.put(
     "/:id",
     multerMiddleware.single("profilePicture"),
     addProfilePicture
 );
-router.delete("/:id", checkJwt, deleteUser);
+router.delete("/:id", deleteUser);
 
 export { router };

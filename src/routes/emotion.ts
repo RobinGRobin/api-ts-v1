@@ -11,9 +11,8 @@ const router = Router();
 router.post(
     "/:idStudent/:idClass",
     multerMiddleware.single("facePicture"),
-    checkJwt,
     getEmotions
 ); // Petición a API de AWS
-router.get("/:idClass", checkJwt, getClassEmotionsController);
+router.get("/:idClass", getClassEmotionsController);
 
 export { router };
