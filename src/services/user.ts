@@ -38,10 +38,19 @@ const addClassToUserService = async (idClass: string, idUser: string) => {
     return responseUser;
 };
 
+const deleteClassIdService = async (idClass: string, idUser: string) => {
+    const response = await UserModel.findOneAndUpdate(
+        { _id: idUser },
+        { $pull: { classes: idClass } }
+    );
+    return response;
+};
+
 export {
     getUsersService,
     getUserService,
     deleteUserService,
     addProfilePictureService,
     addClassToUserService,
+    deleteClassIdService,
 };

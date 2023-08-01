@@ -11,4 +11,19 @@ const getClassEmotionsService = async (idClass: string) => {
     return Emotions;
 };
 
-export { createNewEmotionService, getClassEmotionsService };
+const deleteEmotionByIdClassService = async (idClass: string) => {
+    const response = await EmotionModel.deleteMany({ classId: idClass });
+    return response;
+};
+
+const deleteEmotionByIdUserService = async (idStudent: string) => {
+    const response = await EmotionModel.deleteMany({ user: idStudent });
+    return response;
+};
+
+export {
+    createNewEmotionService,
+    getClassEmotionsService,
+    deleteEmotionByIdClassService,
+    deleteEmotionByIdUserService,
+};

@@ -4,7 +4,6 @@ import {
     getClassEmotionsController,
     getEmotions,
 } from "../controllers/emotion";
-import { checkJwt } from "../middlewares/session";
 
 const router = Router();
 
