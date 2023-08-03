@@ -7,6 +7,7 @@ import {
     deleteClassInfoService,
     getClassIdService,
     getUserClassesService,
+    deleteUserIdService,
 } from "../services/class";
 import { addClassToUserService, deleteClassIdService } from "../services/user";
 import {
@@ -53,9 +54,7 @@ const getUserClassesController = async (req: Request, res: Response) => {
 // Se ejecuta cuando un profesor elimina una clase
 const deleteClassInfoController = async (req: Request, res: Response) => {
     const accessCode = req.params.accessCode;
-    console.log(accessCode);
     const idClass = await getClassIdService(`${accessCode}`);
-    console.log(idClass);
     // Encontrar a los alumnos miembros de la clase
     const classDetail = await getClassDetailService(`${idClass}`);
     if (classDetail === "NO_CLASS_INFO_FOUND") return "NO_CLASS_INFO_FOUND";
@@ -90,11 +89,14 @@ const deleteStudentInClassController = async (req: Request, res: Response) => {
     if (idClass === "NO_CLASS_INFO_FOUND") return "NO_CLASS_INFO_FOUND";
     // Se elimina el registro de emociones del estudiante de la base de datos y de la clase en específico
     const responseEmotions = await deleteEmotionByIdUserService(idStudent);
-    // Se modifica el documento de la clase para eliminar al usuario
+    // Se modifica el documento del usuario para eliminar el id de la clase
     const response = await deleteClassIdService(idClass, idStudent);
+    // Se modifica el documento de la clase para eliminar el id del usuario
+    const responseClass = await deleteUserIdService(idClass, idStudent);
     res.send({
         studentDeleted: response?.toJSON()._id,
         emotionsDeleted: responseEmotions,
+        classModified: responseClass?.toJSON()._id,
     });
 };
 

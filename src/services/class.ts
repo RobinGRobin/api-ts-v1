@@ -37,7 +37,6 @@ const updateClassService = async (accessCode: string, studentId: string) => {
         accessCode: accessCode,
         students: studentId,
     });
-    console.log("User info in class document: ", checkStudent);
     if (checkStudent) return "USER_ALREADY_IN_CLASS";
     const responseClassInfo = await classInfoModel.updateOne(
         { accessCode: accessCode },
@@ -84,6 +83,14 @@ const deleteClassInfoService = async (idClass: string) => {
     return responseData;
 };
 
+const deleteUserIdService = async (idClass: string, idStudent: string) => {
+    const responseData = await classInfoModel.findOneAndUpdate(
+        { _id: idClass },
+        { $pull: { students: idStudent } }
+    );
+    return responseData;
+};
+
 export {
     createNewClassService,
     updateClassService,
@@ -92,4 +99,5 @@ export {
     deleteClassInfoService,
     getClassIdService,
     getUserClassesService,
+    deleteUserIdService,
 };
