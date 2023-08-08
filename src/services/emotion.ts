@@ -11,6 +11,23 @@ const getClassEmotionsService = async (idClass: string) => {
     return Emotions;
 };
 
+const getClassEmotionsTodayService = async (idClass: string) => {
+    const today = new Date(Date.now());
+    const date =
+        today.getFullYear().toString() +
+        "-" +
+        (today.getMonth() + 1).toString() +
+        "-" +
+        today.getDate();
+    const emotions = await EmotionModel.find({
+        createdAt: {
+            $gte: new Date(date),
+        },
+        classId: idClass,
+    });
+    return emotions;
+};
+
 const deleteEmotionByIdClassService = async (idClass: string) => {
     const response = await EmotionModel.deleteMany({ classId: idClass });
     return response;
@@ -24,6 +41,7 @@ const deleteEmotionByIdUserService = async (idStudent: string) => {
 export {
     createNewEmotionService,
     getClassEmotionsService,
+    getClassEmotionsTodayService,
     deleteEmotionByIdClassService,
     deleteEmotionByIdUserService,
 };

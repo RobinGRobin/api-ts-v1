@@ -2,6 +2,7 @@ import { Router } from "express";
 import multerMiddleware from "../middlewares/file";
 import {
     getClassEmotionsController,
+    getClassTodayEmotionsController,
     getEmotions,
 } from "../controllers/emotion";
 
@@ -13,5 +14,6 @@ router.post(
     getEmotions
 ); // Petición a API de AWS
 router.get("/:idClass", getClassEmotionsController);
+router.get("/today/:idClass", getClassTodayEmotionsController);
 
 export { router };

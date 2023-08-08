@@ -7,6 +7,7 @@ import fs from "fs";
 import {
     createNewEmotionService,
     getClassEmotionsService,
+    getClassEmotionsTodayService,
 } from "../services/emotion";
 
 AWS.config.update({ region: "us-east-2" });
@@ -57,4 +58,14 @@ const getClassEmotionsController = async (req: Request, res: Response) => {
     res.send(response);
 };
 
-export { getEmotions, getClassEmotionsController };
+const getClassTodayEmotionsController = async (req: Request, res: Response) => {
+    const idClass = req.params.idClass;
+    const todayInfo = await getClassEmotionsTodayService(idClass);
+    res.send(todayInfo);
+};
+
+export {
+    getEmotions,
+    getClassEmotionsController,
+    getClassTodayEmotionsController,
+};
