@@ -38,10 +38,22 @@ const deleteEmotionByIdUserService = async (idStudent: string) => {
     return response;
 };
 
+const getUserEmotionsByClassService = async (
+    idUser: string,
+    idClass: string
+) => {
+    const response = await EmotionModel.find({
+        user: idUser,
+        classId: idClass,
+    });
+    return response;
+};
+
 export {
     createNewEmotionService,
     getClassEmotionsService,
     getClassEmotionsTodayService,
+    getUserEmotionsByClassService,
     deleteEmotionByIdClassService,
     deleteEmotionByIdUserService,
 };

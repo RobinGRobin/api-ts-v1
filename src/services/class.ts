@@ -91,6 +91,18 @@ const deleteUserIdService = async (idClass: string, idStudent: string) => {
     return responseData;
 };
 
+const getClassStudentsService = async (idClass: string) => {
+    const classInfo = await classInfoModel.findOne({ _id: idClass });
+    const students = classInfo?.students;
+    if (students) {
+        let members: Array<any> = [];
+        for (let i = 0; i < students.length; i++) {
+            members[i] = await UserModel.findOne({ _id: students[i] });
+        }
+        return members;
+    }
+};
+
 export {
     createNewClassService,
     updateClassService,
@@ -99,5 +111,6 @@ export {
     deleteClassInfoService,
     getClassIdService,
     getUserClassesService,
+    getClassStudentsService,
     deleteUserIdService,
 };

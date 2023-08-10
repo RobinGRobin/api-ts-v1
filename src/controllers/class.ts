@@ -8,6 +8,7 @@ import {
     getClassIdService,
     getUserClassesService,
     deleteUserIdService,
+    getClassStudentsService,
 } from "../services/class";
 import { addClassToUserService, deleteClassIdService } from "../services/user";
 import {
@@ -100,6 +101,16 @@ const deleteStudentInClassController = async (req: Request, res: Response) => {
     });
 };
 
+const getClassStudentsController = async (req: Request, res: Response) => {
+    const idClass = req.params.idClass;
+    const students = await getClassStudentsService(idClass);
+    if (students) {
+        res.send(students);
+    } else {
+        res.send({ message: "NO_STUDENTS_REGISTERED" });
+    }
+};
+
 export {
     registerNewClassController,
     updateClassController,
@@ -107,5 +118,6 @@ export {
     getClassesDetailController,
     deleteClassInfoController,
     getUserClassesController,
+    getClassStudentsController,
     deleteStudentInClassController,
 };

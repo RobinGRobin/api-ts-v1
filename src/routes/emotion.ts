@@ -5,6 +5,7 @@ import {
     getClassTodayEmotionsController,
     getEmotions,
 } from "../controllers/emotion";
+import { getUserEmotionsByClassController } from "../controllers/emotion";
 
 const router = Router();
 
@@ -15,5 +16,6 @@ router.post(
 ); // Petición a API de AWS
 router.get("/:idClass", getClassEmotionsController);
 router.get("/today/:idClass", getClassTodayEmotionsController);
+router.get("/user/:idUser/:idClass", getUserEmotionsByClassController);
 
 export { router };

@@ -3,6 +3,7 @@ import {
     deleteClassInfoController,
     deleteStudentInClassController,
     getClassDetailController,
+    getClassStudentsController,
     getClassesDetailController,
     getUserClassesController,
     registerNewClassController,
@@ -20,5 +21,8 @@ router.delete("/:idStudent/:accessCode", deleteStudentInClassController); // Eli
 
 // Obtener las materias registradas en un usuario
 router.get("/user/:id", getUserClassesController);
+
+// Obtener los estudiantes registrados en una clase
+router.get("/students/:idClass", getClassStudentsController);
 
 export { router };
