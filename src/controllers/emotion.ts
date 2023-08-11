@@ -47,6 +47,11 @@ const getEmotions = async (req: Request, res: Response) => {
                     }
                 }
             });
+            // Eliminar el archivo
+            fs.unlink(req.file?.path, (err) => {
+                if (err) throw err;
+                console.log("File Deleted");
+            });
         }
     } catch (error) {
         handleHttp(res, "ERROR_FETCHING_AWS_API", error);
