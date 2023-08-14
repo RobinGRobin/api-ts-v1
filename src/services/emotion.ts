@@ -33,8 +33,14 @@ const deleteEmotionByIdClassService = async (idClass: string) => {
     return response;
 };
 
-const deleteEmotionByIdUserService = async (idStudent: string) => {
-    const response = await EmotionModel.deleteMany({ user: idStudent });
+const deleteEmotionByIdUserService = async (
+    idStudent: string,
+    idClass: string
+) => {
+    const response = await EmotionModel.deleteMany({
+        user: idStudent,
+        classId: idClass,
+    });
     return response;
 };
 

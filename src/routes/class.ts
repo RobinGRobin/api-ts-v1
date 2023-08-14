@@ -15,7 +15,9 @@ const router = Router();
 router.get("/", getClassesDetailController); // Obtener la información de las materias materia
 router.get("/:id", getClassDetailController); // Obtener la información de una materia
 router.post("/", registerNewClassController); // Crear una materia
+
 router.put("/:id", updateClassController); // Actualizar una materia - registrar alumnos en materias
+
 router.delete("/professor/:accessCode", deleteClassInfoController); // Eliminar una materia (profesor)
 router.delete("/:idStudent/:accessCode", deleteStudentInClassController); // Eliminar una materia (estudiante)
 

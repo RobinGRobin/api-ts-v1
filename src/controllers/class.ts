@@ -89,7 +89,10 @@ const deleteStudentInClassController = async (req: Request, res: Response) => {
     const idClass = await getClassIdService(`${accessCode}`);
     if (idClass === "NO_CLASS_INFO_FOUND") return "NO_CLASS_INFO_FOUND";
     // Se elimina el registro de emociones del estudiante de la base de datos y de la clase en específico
-    const responseEmotions = await deleteEmotionByIdUserService(idStudent);
+    const responseEmotions = await deleteEmotionByIdUserService(
+        idStudent,
+        idClass
+    );
     // Se modifica el documento del usuario para eliminar el id de la clase
     const response = await deleteClassIdService(idClass, idStudent);
     // Se modifica el documento de la clase para eliminar el id del usuario
